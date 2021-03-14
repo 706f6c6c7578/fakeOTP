@@ -3,7 +3,7 @@ to fake OTP (One Time Pad) messages.
 
 As an example, here is a small German text, saying if it
 is possible to thwart modern text analysis software, to
-detect who the author was. Padding was done maunally, so
+detect who the author was. Padding was done manually, so
 that we always have five letter code groups:
 
 -----
@@ -21,7 +21,7 @@ Stefanabcd
       ^^^^
 -----
 
-Now we run a Linux oneliner to convert the above text to
+Now we run a Linux one liner to convert the above text to
 a fake OTP message.
 
 cat message.txt | konwert UTF8-ascii/de | tr -cd '[:alpha:]' | tr [:lower:] [:upper:] | fold -w 5 | paste -sd' ' | fold -w 60
