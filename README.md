@@ -1,0 +1,52 @@
+# fakeOTP
+Using a one liner to create fake OTP messages from German text.
+My fun and humble approach to convert German text messages
+to fake OTP (One Time Pad) messages.
+
+As an example, here is a small German text, saying if it
+is possible to thwart modern text analysis software, to
+detect who the author was. Padding was done maunally, so
+that we always have five letter code groups:
+
+-----
+Guten Morgen allerseits.
+
+Vielleicht könnte man damit auch solche modernen
+Forschungsprojekte durcheinanderbringen, welche
+es 'Forscher' erlaubt Textanalysen zu machen?
+
+Egal, es macht jedoch sehr viel Spaß mit solch
+einem Script Text(e) zu manipulieren. :-)
+
+Grüße
+Stefanabcd
+      ^^^^
+-----
+
+Now we run a Linux oneliner to convert the above text to
+a fake OTP message.
+
+cat message.txt | konwert UTF8-ascii/de | tr -cd '[:alpha:]' | tr [:lower:] [:upper:] | fold -w 5 | paste -sd' ' | fold -w 60
+
+GUTEN MORGE NALLE RSEIT SVIEL LEICH TKOEN NTEMA NDAMI TAUCH
+SOLCH EMODE RNENF ORSCH UNGSP ROJEK TEDUR CHEIN ANDER BRING
+ENWEL CHEES FORSC HERER LAUBT TEXTA NALYS ENZUM ACHEN EGALE
+SMACH TJEDO CHSEH RVIEL SPASS MITSO LCHEI NEMSC RIPTT EXTEZ
+UMANI PULIE RENGR UESSE STEFA NABCD
+                               ^^^^
+If we apply then a final '| rot12' at the end of the above
+oneliner we get this result, looking like an OTP message.
+
+THGRA ZBETR ANYYR EFRVG FIVRY YRVPU GXBRA AGRZN AQNZV GNHPU
+FBYPU RZBQR EARAS BEFPU HATFC EBWRX GRQHE PURVA NAQRE OEVAT
+RAJRY PURRF SBEFP URERE YNHOG GRKGN ANYLF RAMHZ NPURA RTNYR
+FZNPU GWRQB PUFRU EIVRY FCNFF ZVGFB YPURV ARZFP EVCGG RKGRM
+HZNAV CHYVR ERATE HRFFR FGRSN ANOPQ
+                               ^^^^
+Additionally (Windows WSL) users can then run this program
+to get a hard to recocnize (for computers) result, ready to
+be FAXed:
+
+http://thumulla.com/home/fuck_the_nsa.html
+
+
